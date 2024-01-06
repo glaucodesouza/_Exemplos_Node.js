@@ -19,7 +19,7 @@ const fs = require('fs');
 
 const replaceTemplate = (temp, product) => {
 
-  // /g meaning of replacing all products in one pass...
+  // /g meaning of replacing all products in one pass...as a loop
   let output = temp.replace(/{%PRODUCTNAME%}/g, product.productName);
   output = output.replace(/{%IMAGE%}/g, product.image);
   output = output.replace(/{%PRICE%}/g, product.price);
