@@ -27,7 +27,7 @@ const replaceTemplate = (temp, product) => {
   output = output.replace(/{%NUTRIENTS%}/g, product.nutrients);
   output = output.replace(/{%QUANTITY%}/g, product.quantity);
   output = output.replace(/{%DESCRIPTION%}/g, product.description);
-  output = output.replace(/{%ID}/g, product.id);
+  output = output.replace(/{%ID%}/g, product.id);
 
   // OBS.: 
   // not-organic is a CSS class in template-product.html
