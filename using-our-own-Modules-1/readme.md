@@ -24,7 +24,14 @@ Our own modules (module.exports)
   Whats the difference between import, export and require ?
 
     The major difference between require and import, is that require will automatically scan node_modules to find modules, but import, which comes from ES6, won't.
-    You can also see answer here:
+
+    Apart from that,
+
+    You can't selectively load only the pieces you need with require but with import, you can selectively load only the pieces you need, which can save memory.
+
+    Loading is synchronous(step by step) for require on the other hand import can be asynchronous(without waiting for previous import) so it can perform a little better than require.
+
+  You can also see answer here:
     https://stackoverflow.com/questions/46677752/the-difference-between-requirex-and-import-x/46677972#:~:text=The%20major%20difference%20between%20require,from%20ES6%2C%20won't.&text=js'%20notes%2C%20import%20won',the%20path%20of%20the%20module.
 
 //OBS.: It is now an anonymous function (with no name)
