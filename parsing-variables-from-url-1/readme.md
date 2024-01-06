@@ -6,3 +6,6 @@ Class from UDEMY Course
 Instrutor
 Jonas Schmedtmann
 Web Developer, Designer, and Teacher
+
+to run, use this command: 
+  node index.js
