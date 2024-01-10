@@ -1,5 +1,6 @@
 const fs = require('fs');
 const crypto = require('crypto');
+const { todo } = require('node:test');
 
 const start = Date.now(); //get date in miliseconds
 
@@ -20,6 +21,9 @@ fs.readFile('test-file.txt', () => {
 
   process.nextTick(() => console.log(Date.now() - start, 'Process.nextTick'));
 
+  // FIXME: criar um package.json coom o comando a seguir como SCRIPT START:
+  // FIXME: Isto consertara o tempo que as linhas de crypto sao executadas pelo WINDOWS...
+  // FIXME: "start": "set UV_THREADPOOL_SIZE=2 & node event-loop.js"
   crypto.pbkdf2Sync('password', 'salt', 100000, 1024, 'sha512', () => {
     console.log(Date.now() - start, `miliseconds... Password encrypted`);
   });
