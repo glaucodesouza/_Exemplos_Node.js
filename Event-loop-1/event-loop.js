@@ -5,7 +5,7 @@ const start = Date.now(); //get date in miliseconds
 
 //set environment THREAD quantity variable to just 1
 //No more 4 threads for paralel processing
-process.env.UV_THREADPOOL_SIZE = 1;
+process.env.UV_THREADPOOL_SIZE = 4;
 
 setTimeout(() => console.log(Date.now() - start, 'Timer 1 finished'), 0); //zero seconds
 setImmediate(() => console.log(Date.now() - start, 'Immediate 1 finished'));
@@ -20,16 +20,16 @@ fs.readFile('test-file.txt', () => {
 
   process.nextTick(() => console.log(Date.now() - start, 'Process.nextTick'));
 
-  crypto.pbkdf2('password', 'salt', 100000, 1024, 'sha512', () => {
+  crypto.pbkdf2Sync('password', 'salt', 100000, 1024, 'sha512', () => {
     console.log(Date.now() - start, `miliseconds... Password encrypted`);
   });
-  crypto.pbkdf2('password', 'salt', 100000, 1024, 'sha512', () => {
+  crypto.pbkdf2Sync('password', 'salt', 100000, 1024, 'sha512', () => {
     console.log(Date.now() - start, `miliseconds... Password encrypted`);
   });
-  crypto.pbkdf2('password', 'salt', 100000, 1024, 'sha512', () => {
+  crypto.pbkdf2Sync('password', 'salt', 100000, 1024, 'sha512', () => {
     console.log(Date.now() - start, `miliseconds... Password encrypted`);
   });
-  crypto.pbkdf2('password', 'salt', 100000, 1024, 'sha512', () => {
+  crypto.pbkdf2Sync('password', 'salt', 100000, 1024, 'sha512', () => {
     console.log(Date.now() - start, `miliseconds... Password encrypted`);
   });
 });
