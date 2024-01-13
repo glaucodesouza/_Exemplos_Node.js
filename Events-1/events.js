@@ -1,7 +1,6 @@
 const EventEmitter = require('events');
 const http = require('http');
 const server = http.createServer();
-
 const myEmitter = new EventEmitter();
 
 myEmitter.on('newSale', () => {
@@ -17,6 +16,9 @@ myEmitter.on('newSale', (stock) => {
 });
 
 myEmitter.emit('newSale', 9);
+
+////////////////////////////////////////////////////////////////////////
+// SERVER
 ////////////////////////////////////////////////////////////////////////
 server.on('request', (req, res) => {
   console.log('Request received!');
