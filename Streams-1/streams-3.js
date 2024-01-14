@@ -1,6 +1,6 @@
 const fs = require('fs');
 const server = require('http').createServer(); // IMPORT AND CREATING SERVER
-
+const { pipeline, finished } = require('stream');
 server.on('request', (req, res) => {
   //----------------------------------------------------------------
   // Solution 3 - Using PIPE operator
