@@ -24,9 +24,45 @@ const writeFilePro = (file, data) => {
   });
 };
 
+//----------------------------------------------------------------
+//New code
+//----------------------------------------------------------------
+//Async function, which returns a promise
+//cleaner and easier to understand than the OLD code.
+//this is async but have synchronous calling inside it
+//so the 3 calling inside it, are executed one after the end of the other.
+const getDocPic = async () => {
+  try {
+    //await: call synchronously this function as a promise
+    const data = await readFilePro(`${__dirname}/dog.txt`); //this is a promise, called synchronously
+    console.log(`Breed, ${data}`);
+
+    //await: call synchronously this function as a promise
+    const res = await superagent.get(`https://dog.ceo/api/breed/${data}/images/random`); //returns a Promise
+    console.log(res.body.message);
+
+    //await: call synchronously this function as a promise
+    //returns a promise, waiting for it to write
+    //no need here to create a variable in this case
+    await writeFilePro('dog-img.txt', res.body.message);
+    console.log('Random dog image saved to file!');
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+//call this async function
+//this is async but have synchronous calling inside it
+//so the 3 calling inside it, are executed one after the end of the other.
+getDocPic();
+
+//----------------------------------------------------------------
+// Older code
+//----------------------------------------------------------------
 // here we call our custom function which will return a promise
 // in data parameter
 // CHAIN
+/*
 readFilePro(`${__dirname}/dog.txt`) //this is a promise
   .then((data) => {
     //here is a callback ...
@@ -44,38 +80,4 @@ readFilePro(`${__dirname}/dog.txt`) //this is a promise
     //this is the error for the promise of readFilePro...
     console.log('RETURNED error of promise: ', err); // returned message here would be: could not find a file
   });
-
-//----------------------------------------------------------------
-// OLD WAY OF DOING IT ...
-// WE will make it as above, chaining the promises....
-//----------------------------------------------------------------
-// fs.readFile(`${__dirname}/dog.txt`, (err, data) => {
-// //here is a callback ...
-// console.log(`Breed, ${data}`);
-
-// superagent
-//   //................................................................
-//   // CALLING PROMISE here ...
-//   //................................................................
-//   .get(`https://dog.ceo/api/breed/${data}/images/random`)
-
-//   //................................................................
-//   // SUCCESSFUL RETURNING OF PROMISE ...
-//   //................................................................
-//   .then((res) => {
-//     //here is another callback ...
-//     console.log('RETURNING Success of promise:', res.body);
-
-//     fs.writeFile('dog-img.txt', res.body.message, (err) => {
-//       //here is another callback...
-//       console.log('Random dog image saved to file!');
-//     });
-//   })
-
-//   //................................................................
-//   // ERROR RETURNING OF PROMISE...
-//   //................................................................
-//   .catch((err) => {
-//     console.log('RETURNED error of promise: ', err.message);
-//   });
-// });
+*/
